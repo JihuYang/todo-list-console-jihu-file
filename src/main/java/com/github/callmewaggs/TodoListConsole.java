@@ -6,12 +6,16 @@ import com.github.callmewaggs.menu.TodoMenuParameter;
 import com.github.callmewaggs.processor.TodoProcessor;
 import java.util.Map;
 
+/** 
+ * 실행 가능한 기능들을 사용자의 입력과 매핑시켜 적절한 processor 를 실행시킴  
+ */
 public class TodoListConsole {
 
   private Map<TodoMenu, TodoProcessor> todoProcessorMapping;
   private TodoRepository todoRepository;
   private IOHelper ioHelper;
 
+  /** setter */
   public TodoListConsole(
       Map<TodoMenu, TodoProcessor> todoProcessorMapping,
       TodoRepository todoRepository,
@@ -34,6 +38,14 @@ public class TodoListConsole {
         }
         if (menu == TodoMenu.SHOW_LIST) {
           ioHelper.printTodoList(todoRepository.findAll());
+          continue;
+        }
+        if (menu == TodoMenu.SEARCH) {
+          //for문 사용하여 검색 
+          //ioHelper.printTodoList(todoRepository.searchAll(todoMenuParameter.getContent()));
+        	
+          //stream 사용하여 검색 
+          ioHelper.printTodoList(todoRepository.searchAllStream(todoMenuParameter.getContent()));
           continue;
         }
         TodoProcessor todoProcessor = todoProcessorMapping.get(menu);

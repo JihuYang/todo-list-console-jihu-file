@@ -1,8 +1,12 @@
 package com.github.callmewaggs.domain;
 
 import java.util.ArrayList;
-import java.util.List;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+
+/** Todo에 대한 저장소 역할 */
 public class TodoRepository {
 
   private List<Todo> todoList;
@@ -15,6 +19,7 @@ public class TodoRepository {
     todoList.add(todo);
   }
 
+  /** 사용자가 입력한 번호를 찾아 return */
   public Todo find(long id) {
     return todoList.stream()
         .filter(todo -> todo.getId() == id)
@@ -52,4 +57,24 @@ public class TodoRepository {
   public int size() {
     return todoList.size();
   }
+  
+	public List<Todo> searchAll(String content) {
+		List<Todo> searched = new ArrayList<>();
+	    for (Todo todo : todoList) {
+	    	if(todo.getContent().contains(content)) {
+	            searched.add(todo);
+	    	}	
+	    }
+		return searched;
+	}
+
+	  public List<Todo> searchAllStream(String content) {
+			List<Todo> searched = new ArrayList<>();
+		    searched.addAll(todoList.stream()
+		        .filter(todo -> todo.getContent().contains(content))
+		        .collect(Collectors.toList()));
+		    return searched;
+		  }
+	
+
 }

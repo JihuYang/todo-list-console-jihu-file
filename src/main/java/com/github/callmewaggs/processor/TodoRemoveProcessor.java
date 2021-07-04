@@ -5,6 +5,7 @@ import com.github.callmewaggs.domain.TodoRepository;
 import com.github.callmewaggs.menu.TodoMenuParameter;
 import java.util.List;
 
+/** Todo 삭제 */
 public class TodoRemoveProcessor implements TodoProcessor {
 
   private TodoRepository todoRepository;

@@ -13,6 +13,7 @@ import java.util.Map;
 
 public class TodoListConsoleMain {
 
+  /** todoServicesMapping에 TodoMenu와 TodoProcessor주입 */
   public static void main(String[] args) {
     TodoRepository todoRepository = new TodoRepository();
     IdGenerator idGenerator = new IdGenerator();
