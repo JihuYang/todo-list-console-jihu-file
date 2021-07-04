@@ -41,6 +41,8 @@ public class TodoListConsole {
           continue;
         }
         if (menu == TodoMenu.SEARCH) {
+          ioHelper.printMessage("입력하신 ["+ todoMenuParameter.getContent() + "] 를 포함하는 할일을 검색한 결과입니다. ");
+
           //for문 사용하여 검색 
           //ioHelper.printTodoList(todoRepository.searchAll(todoMenuParameter.getContent()));
         	
@@ -48,6 +50,12 @@ public class TodoListConsole {
           ioHelper.printTodoList(todoRepository.searchAllStream(todoMenuParameter.getContent()));
           continue;
         }
+        if (menu == TodoMenu.CHECK) {
+            //for문 사용하여 미완료된 할 일을 보여준다.  
+            ioHelper.printMessage("완료되지 않은 할일 리스트입니다. ");
+            ioHelper.printTodoList(todoRepository.check());
+            continue;
+          }        
         TodoProcessor todoProcessor = todoProcessorMapping.get(menu);
         todoProcessor.run(todoMenuParameter);
         ioHelper.printTodoList(todoRepository.findAll());

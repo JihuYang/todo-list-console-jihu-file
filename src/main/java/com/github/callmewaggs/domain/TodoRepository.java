@@ -60,21 +60,28 @@ public class TodoRepository {
   
 	public List<Todo> searchAll(String content) {
 		List<Todo> searched = new ArrayList<>();
-	    for (Todo todo : todoList) {
-	    	if(todo.getContent().contains(content)) {
-	            searched.add(todo);
-	    	}	
-	    }
+		for (Todo todo : todoList) {
+			if (todo.getContent().contains(content)) {
+				searched.add(todo);
+			}
+		}
 		return searched;
 	}
 
-	  public List<Todo> searchAllStream(String content) {
-			List<Todo> searched = new ArrayList<>();
-		    searched.addAll(todoList.stream()
-		        .filter(todo -> todo.getContent().contains(content))
-		        .collect(Collectors.toList()));
-		    return searched;
-		  }
+	public List<Todo> searchAllStream(String content) {
+		List<Todo> searched = new ArrayList<>();
+		searched.addAll(
+				todoList.stream().filter(todo -> todo.getContent().contains(content)).collect(Collectors.toList()));
+		return searched;
+	}
 	
+	public List<Todo> check() {
+		List<Todo> checked = new ArrayList<>();
+	    for (Todo todo : todoList) {
+	        if(todo.getFinishAt() == null)
+	        	checked.add(todo);
+	      }
+		return checked;
+	}	
 
 }

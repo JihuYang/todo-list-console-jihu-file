@@ -39,10 +39,15 @@ public class TodoMenuParameter {
       case FINISH:
         return finish(parsed);
       case SEARCH:
-        return search(parsed);        
+        return search(parsed); 
+      case CHECK:
+          return check();       
       default:
         throw new IllegalStateException("Wrong menu. try again.");
     }
+  }
+  private static TodoMenuParameter check() {
+	    return new TodoMenuParameter(TodoMenu.CHECK, null, null, null);
   }
   
   private static TodoMenuParameter search(String[] parsed) {

@@ -33,6 +33,7 @@ public class IOHelper {
     System.out.println("  4: remove TODO");
     System.out.println("  5: finish TODO");
     System.out.println("  6: search TODO");   
+    System.out.println("  7: check unfinished TODO");   
     System.out.println("  0: exit\n");
   }
 
@@ -45,6 +46,7 @@ public class IOHelper {
     System.out.println("  4 {id}<Enter>");
     System.out.println("  5 {id}<Enter>");
     System.out.println("  6 {content}<Enter>");
+    System.out.println("  7<Enter>");
     System.out.println("  dependencies must be written with @ (ex. @1)\n");
   }
 
