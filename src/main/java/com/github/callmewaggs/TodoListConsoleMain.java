@@ -1,5 +1,7 @@
 package com.github.callmewaggs;
 
+import com.github.callmewaggs.detailProcessor.DetailCreateProcessor;
+import com.github.callmewaggs.detailProcessor.DetailProcessor;
 import com.github.callmewaggs.domain.IdGenerator;
 import com.github.callmewaggs.domain.TodoRepository;
 import com.github.callmewaggs.menu.TodoMenu;
@@ -19,12 +21,15 @@ public class TodoListConsoleMain {
     IdGenerator idGenerator = new IdGenerator();
 
     Map<TodoMenu, TodoProcessor> todoServicesMapping = new HashMap<>();
+    Map<TodoMenu, DetailProcessor> detailServicesMapping = new HashMap<>();
+   
     todoServicesMapping.put(
         TodoMenu.CREATE, new TodoCreateProcessor(todoRepository, idGenerator));
     todoServicesMapping.put(TodoMenu.UPDATE, new TodoUpdateProcessor(todoRepository));
     todoServicesMapping.put(TodoMenu.REMOVE, new TodoRemoveProcessor(todoRepository));
     todoServicesMapping.put(TodoMenu.FINISH, new TodoFinishProcessor(todoRepository));
-
+    detailServicesMapping.put(
+            TodoMenu.CREATEDETAIL, new DetailCreateProcessor(todoRepository));
     IOHelper ioHelper = new IOHelper();
     TodoListConsole todoListConsole =
         new TodoListConsole(todoServicesMapping, todoRepository, ioHelper);

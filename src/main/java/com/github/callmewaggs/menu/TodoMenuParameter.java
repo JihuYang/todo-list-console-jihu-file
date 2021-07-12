@@ -3,6 +3,9 @@ package com.github.callmewaggs.menu;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.callmewaggs.detailMenu.DetailMenu;
+import com.github.callmewaggs.detailMenu.DetailMenuParameter;
+
 public class TodoMenuParameter {
 
   private TodoMenu menu;
@@ -41,13 +44,42 @@ public class TodoMenuParameter {
       case SEARCH:
         return search(parsed); 
       case CHECK:
-          return check();       
+        return check();
+      case CREATEDETAIL:
+        return createDetail(parsed);
+      case UPDATEDETAIL:
+        return updateDetail(parsed);
+      case REMOVEDETAIL:
+        return removeDetail(parsed);
       default:
         throw new IllegalStateException("Wrong menu. try again.");
     }
   }
+
+//  private static DetailMenuParameter detail(String[] parsed) {
+//	DetailMenu detailMenu = DetailMenu.fromMenuNumber(parsed[1]);
+//	long todoId = Long.parseLong(parsed[2]);
+//	String memo = parsed[3];
+//	return new DetailMenuParameter(detailMenu, todoId, memo);
+//  }  
+  private static TodoMenuParameter removeDetail(String[] parsed) {
+	    long id = Long.parseLong(parsed[1]);
+	    return new TodoMenuParameter(TodoMenu.REMOVEDETAIL, id, null, null);
+	  }
+
+  private static TodoMenuParameter updateDetail(String[] parsed) {
+	long id = Long.parseLong(parsed[1]);
+    String memo = parsed[2];
+    return new TodoMenuParameter(TodoMenu.UPDATEDETAIL, id, memo, null);
+  }
+
+  private static TodoMenuParameter createDetail(String[] parsed) {
+	long id = Long.parseLong(parsed[1]);
+    String memo = parsed[2];
+    return new TodoMenuParameter(TodoMenu.CREATEDETAIL, id, memo, null);
+  }  
   private static TodoMenuParameter check() {
-	    return new TodoMenuParameter(TodoMenu.CHECK, null, null, null);
+	return new TodoMenuParameter(TodoMenu.CHECK, null, null, null);
   }
   
   private static TodoMenuParameter search(String[] parsed) {

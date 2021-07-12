@@ -12,6 +12,8 @@ public class Todo {
   private LocalDateTime createAt;
   private LocalDateTime updateAt;
   private LocalDateTime finishAt;
+  private String memo;
+ 
 
   /** Todo에 내용 저장 */
   public Todo(long id, String content, List<Todo> parents) {
@@ -22,6 +24,14 @@ public class Todo {
     this.content = content;
     this.createAt = LocalDateTime.now();
     this.parents = parents;
+  }
+  
+  public Todo(long id, String memo) {
+    if (memo.equals(" ")) {
+      throw new IllegalArgumentException("메모의 내용은 공백일 수 없습니다. 다시 입력해주세요.");
+    }
+    this.id = id;
+    this.memo = memo;
   }
 
   public long getId() {
@@ -48,6 +58,10 @@ public class Todo {
     return finishAt;
   }
 
+  public String getMemo() {
+	return memo;
+  } 
+  
   /**
    * update 할 때 수정한 content와 수정일시 저장
    * @param content

@@ -19,7 +19,13 @@ public enum TodoMenu {
 	
   SEARCH("6"),
   
-  CHECK("7");
+  CHECK("7"),
+	
+  CREATEDETAIL("8"),
+
+  UPDATEDETAIL("9"),
+
+  REMOVEDETAIL("10");
 
   /** menuNumber를 저장할 변수 선언  */
   private String menuNumber;
